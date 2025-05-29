@@ -15,7 +15,7 @@ class App(customtkinter.CTk):
 		super().__init__()
 		self._set_appearance_mode("System")
 		self.geometry("1024x768")
-		self.title("Update PO report strings")
+		self.title("KV_SCDS")
 		
 		# create the input frame
 		self.current_kv_frame = CurrentInputFrame(master=self)
