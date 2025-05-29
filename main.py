@@ -88,29 +88,7 @@ class CurrentInputFrame(customtkinter.CTkFrame):
 		# new value string text box
 		self.new_values_textbox = customtkinter.CTkTextbox(master=self,width=350)
 		self.new_values_textbox.grid(row=3,column=1,padx=5,pady=5,ipadx=5,ipady=5)
-# gather text box string data
-	def get(self):
-		string_data = []
-		if self.current_item_string.get() != '':
-			string_data.append(self.current_item_string.get())
-		else:
-			print(f"{self.label_cur_items.cget("text")} is emplty")
 
-		if self.current_value_string.get() != '':
-			string_data.append(self.current_value_string.get())
-		else:
-			print(f"{self.label_cur_prices.cget("text")} is empty")
-
-		if self.new_items_textbox.get("1.0","end") != '':
-			string_data.append(self.new_items_textbox.get("1.0","end"))
-		else:
-			print(f"{self.label_new_items.cget("text")} is empty")
-
-		if self.new_values_textbox.get("1.0","end") != '':
-			string_data.append(self.new_values_textbox.get("1.0","end"))
-		else:
-			print(f"{self.label_new_prices.cget("text")} is empty")
-		return string_data
 # show changes being made from old to new
 class ChangeDataFrame(customtkinter.CTkFrame):
 	def __init__(self, master):
