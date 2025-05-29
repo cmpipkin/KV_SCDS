@@ -1,4 +1,4 @@
-# update query string
+# PO update query string
 
 #from typing import Any
 from tkinter import END
@@ -15,7 +15,7 @@ class App(customtkinter.CTk):
 		super().__init__()
 		self._set_appearance_mode("System")
 		self.geometry("1024x768")
-		self.title("KV_SCDS")
+		self.title("Update PO report strings")
 		
 		# create the input frame
 		self.current_kv_frame = CurrentInputFrame(master=self)
@@ -48,18 +48,18 @@ class App(customtkinter.CTk):
 		self.change_data_frame.added_data.delete(1.0,END) #clean up the What's Added section
 
 
-		current_dict = vbstringbuilder.dict_csv(self.current_kv_frame.current_item_string.get().split(","),self.current_kv_frame.current_value_string.get().split(","))
-		new_dict = vbstringbuilder.dict_line(self.current_kv_frame.new_items_textbox.get(1.0,END).splitlines(),self.current_kv_frame.new_values_textbox.get(1.0,END).splitlines())
-		keys_with_values, removed_keys = vbstringbuilder.remove_empties(new_dict)
-		items_added = vbstringbuilder.added_items(current_dict,new_dict)
-		item_string = vbstringbuilder.list_of_string(keys_with_values.keys())
-		value_string = vbstringbuilder.list_of_number(keys_with_values.values())
+		current_dict = vbstringbuilder.dict_csv(self.current_kv_frame.current_item_string.get().split(","),self.current_kv_frame.current_value_string.get().split(",")) #build a dictionary from csv strings
+		new_dict = vbstringbuilder.dict_line(self.current_kv_frame.new_items_textbox.get(1.0,END).splitlines(),self.current_kv_frame.new_values_textbox.get(1.0,END).splitlines()) #build a dictionary from line items
+		keys_with_values, removed_keys = vbstringbuilder.remove_empties(new_dict) #sort values and return a dictioanry and list
+		items_added = vbstringbuilder.added_items(current_dict,new_dict) #items that were added
+		item_string = vbstringbuilder.list_of_string(keys_with_values.keys()) #build string with double quoted csv values
+		value_string = vbstringbuilder.list_of_number(keys_with_values.values()) #build string with csv values
 
-		self.change_data_frame.bna_data.insert(1.0,vbstringbuilder.bna_data(current_dict,new_dict))
-		self.change_data_frame.removed_data.insert(1.0,"\n".join([key for key in removed_keys]))
-		self.change_data_frame.added_data.insert(1.0,"\n".join([key for key in items_added]))
-		self.output_kv_frame.new_items.set(item_string)
-		self.output_kv_frame.new_values.set(value_string)
+		self.change_data_frame.bna_data.insert(1.0,vbstringbuilder.bna_data(current_dict,new_dict)) #update What's Changed
+		self.change_data_frame.removed_data.insert(1.0,"\n".join([key for key in removed_keys])) #update What's Removed
+		self.change_data_frame.added_data.insert(1.0,"\n".join([key for key in items_added])) #update What's added
+		self.output_kv_frame.new_items.set(item_string) #update key string
+		self.output_kv_frame.new_values.set(value_string) #update value string
 
 # input frame
 class CurrentInputFrame(customtkinter.CTkFrame):
