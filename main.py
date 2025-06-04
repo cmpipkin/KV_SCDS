@@ -56,8 +56,8 @@ class App(customtkinter.CTk):
 		value_string = vbstringbuilder.list_of_number(keys_with_values.values()) #build string with csv values
 
 		self.change_data_frame.bna_data.insert(1.0,vbstringbuilder.bna_data(current_dict,new_dict)) #update What's Changed
-		self.change_data_frame.removed_data.insert(1.0,"\n".join([key for key in removed_keys])) #update What's Removed
-		self.change_data_frame.added_data.insert(1.0,"\n".join([key for key in items_added])) #update What's added
+		self.change_data_frame.removed_data.insert(1.0,"\n".join([key for key in removed_keys])) #update What's Gone
+		self.change_data_frame.added_data.insert(1.0,"\n".join([key for key in items_added])) #update What's New
 		self.output_kv_frame.new_items.set(item_string) #update key string
 		self.output_kv_frame.new_values.set(value_string) #update value string
 
