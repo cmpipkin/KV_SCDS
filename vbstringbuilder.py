@@ -18,7 +18,7 @@ def dict_csv(keys: str,values: str) -> dict:
 		return -1
 	else:
 		for i in range(len(keys)):
-			a_dict.setdefault(keys[i].replace('"', ''),values[i].replace('"', ''))
+			a_dict.setdefault(keys[i].replace('"', '').strip(),values[i].replace('"', '').strip())
 	return a_dict
 
 def dict_line(keys: str,values: str) -> dict:
@@ -39,8 +39,7 @@ def dict_line(keys: str,values: str) -> dict:
 		return -1
 	else:
 		for i in range(len(keys)):
-			#if keys[i] != '':
-			new_dict.setdefault(keys[i],values[i])
+			new_dict.setdefault(keys[i].strip(),values[i].strip())
 	return new_dict
 
 def bna_data(a_dict: dict,b_dict: dict) -> str:
@@ -86,9 +85,8 @@ def added_items(a_dict: dict,b_dict: dict) -> list:
 		List of keys that were added.
 	"""
 	items_added: list = []
-	if len(b_dict.keys()) > len(a_dict.keys()):
-		for key in (set(list(b_dict.keys())) - set(list(a_dict.keys()))):
-			items_added.append(f"Key: {key}")
+	for key in (set(list(b_dict.keys())) - set(list(a_dict.keys()))):
+		items_added.append(f"Key: {key}")
 	return items_added
 
 def list_of_string(a_list: list) -> str:
