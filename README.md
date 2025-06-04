@@ -6,7 +6,7 @@ Quick application to take in 2 strings and compare with 2 data colums copies fro
 Take a Visual Basic list, of type string and double, compare with listed items from a spreadsheet, and output the list respectively for Visual Basic.
 
 ## Data Layout
-Current Item String: “product-01”, “product-02”, “product-03”, “product-04”
+Current Item String: “product-01”, “product-02”, “product-03”, “product-04”  
 Current Price String: 12.32, 4.34, 34.23, 11.98
 
 |New Item String|New Price String|
